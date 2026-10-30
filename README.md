@@ -20,6 +20,9 @@ gateway, where the logic and AI to determine the payload is carried out.
 No truck detected             |  Payload estimation
 :-------------------------:|:-------------------------:
 ![no stone](figures/fys_no_valid.png)  |  ![payload estimate](figures/stone_detected.png)
+:-------------------------:|:-------------------------:
+the web app indicates no truck and no payload is estimated|truck is detected and payload is estimate
+*Figure 2* screenshot of the web app when truck is not detected and when truck is detected
 
 
 [Video of the system working](https://www.youtube.com/watch?v=l13ZbLLVUZg)

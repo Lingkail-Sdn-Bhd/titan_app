@@ -1,4 +1,4 @@
-﻿# titan_app
+﻿# Titan Board Mini AI Payload for Quarry Truck
 Documentation of featured Titan Board Mini for AI payload detection
 a collection of titan board and titan board mini projects
 

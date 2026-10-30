@@ -14,6 +14,11 @@ In granite quarry, it is important to have digitalization of the production proc
 dump truck (ADT) as it dump the stone at primary crusher. Conventional measurement system like weighing bridge is expensive and impractical to be installed at crusher site, in addition to terrain and space limitation. A weighing bring will easily cost > RM100,000. Alternative like installing load cell at each ADT involves major rework on the ADT and is also costly at RM25,000 per truck. A fleet of 10 trucks will easily requires a capital investment of over RM250,000.
 Off the shelf LIDAR volumetric measurement system is also expensive at >RM350,000. In this solution, we attempt to use low cost camera such as CCTV and in this example, Titan Board as the AI camera. It will feed image stream ADT to edge 
 gateway, where the logic and AI to determine the payload is carried out. 
+![software ai tonnage](figures/fys_quarry_app_rtt_contest.jpg)
+*Figure 1* The lorry haulage web app at quarry. This project with Titan Board Mini focus on "Estimate Tonnage". Enlarge view of the ADT with camera is at top right of this image
+
+![no stone](figures/fys_no_valid.png)
+![payload estimate](figures/stone detected.png)
 
 [Video of the system working](https://www.youtube.com/watch?v=l13ZbLLVUZg)
 

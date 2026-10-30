@@ -26,7 +26,7 @@ the web app indicates no truck and no payload is estimated|truck is detected and
 
 ![Video of the system working](figures/youtube_quarry_rtt.jpg)
 [Video of the system working](https://www.youtube.com/watch?v=l13ZbLLVUZg)
-
+[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://www.youtube.com/watch?v=l13ZbLLVUZg)
 
 
 # Setup References

@@ -121,8 +121,10 @@ class 0            | class 1
 :-------------------------:|:-------------------------:
 ![class 0](figures/stone_load.png) |  ![class 1](figures/truck_bed.png)
 
+*Figure 3* Annotation
 
-*Figure 4* Annotation
+![tiny dot](figures/tiny_dots.png)
+*Figure 4*  tiny dots (nodes) tightly around the uneven rock edges to ensure a consistence close boundary.​
 
 ### Annotation Methodology
 *   **Workspace:** Processed entirely within the **Roboflow** platform.
@@ -190,12 +192,11 @@ Models are cross-matched against actual physical weighbridge (FYS) weights using
 
 ### Production Loop
 1. API detects arrival of a hauling lorry.
-2. Worker script processes live RTSP stream over a 30s window.
+2. Worker script processes live video stream over a 3s window.
 3. Model extracts stabilized median frames and processes tonnage.
-4. Results are pushed via `POST` to `/api/trips/ai-tonnage` paired with the vehicle's EPC tag.
 
 ### Failure & Exception Handling
-If an observation window is incomplete, an API network drops, or an EPC tag mismatch occurs, the pipeline flags the record as `Submitted: False` to trigger engineering alerts.
+If an observation window is incomplete, an API network drops, the pipeline flags the record as `Submitted: False` to trigger engineering alerts.
 
 ### Live Production Log Sample
 ```text

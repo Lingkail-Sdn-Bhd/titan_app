@@ -13,6 +13,7 @@ a collection of titan board and titan board mini projects
 refer to [Titan Board Mini 开发板](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/hw-board/ra8p1-titan-board-mini/ra8p1-titan-board-mini?id=titan-board-mini-%e5%bc%80%e5%8f%91%e6%9d%bf)
 
 # system architecture
+
 ```mermaid
 flowchart LR
     %% Styling
@@ -63,5 +64,6 @@ flowchart LR
     class Receiver,Converter,Storage ubuntu;
     class WebApp web;
     style Right_Column fill:none,stroke:none
-
 ```
+photo below shows the setup used for this project
+![setup of hardware](Titan_Mini_Lorry_Capture/figures/image-20251029173335454.png)

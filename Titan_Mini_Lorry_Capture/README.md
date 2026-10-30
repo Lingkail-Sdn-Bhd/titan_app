@@ -1,22 +1,21 @@
-# MIPI NPU Face Detection
+# Titan Board Mini ADT capture
 
 [English](./README.md) | [中文](./README_zh.md)
 
 ## Overview
 
-This example runs real-time face detection on **Titan Board Mini** using:
+**Titan Board Mini** is used as a semi AI camera for a quarry for AI payload detection:
 
 - **OV5640** camera connected through **MIPI CSI**
 - **RA8P1 VIN** for frame capture
 - **Arm Ethos-U55 NPU** for YOLO-Fastest inference
-- **RGB565 LCD** for live preview and face box overlay
+- **RGB565 LCD** for live preview overlay
 
 
 ## Features
 
 - Captures camera frames from **MIPI CSI + VIN**
 - Runs **YOLO-Fastest face detection** on the NPU
-- Draws green face boxes on the LCD
 - Supports **OV5640 auto focus** by user key
 - Supports compile-time control for detection logs
 
@@ -74,7 +73,6 @@ Build the project with **RT-Thread Studio** or the existing project build flow i
 After boot:
 
 - The LCD shows the live OV5640 preview
-- Detected faces are highlighted with green rectangles
 - Pressing the user key triggers camera auto focus
 
 ![alt text](figures/image-20251029173335454.png)

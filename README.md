@@ -33,7 +33,7 @@ the web app indicates no truck and no payload is estimated|truck is detected and
 refer to [Titan Board Mini 开发板](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/hw-board/ra8p1-titan-board-mini/ra8p1-titan-board-mini?id=titan-board-mini-%e5%bc%80%e5%8f%91%e6%9d%bf)
 
 the titan board mini is attached a camera module and ethernet module. ethernet is used to ensure stability in outdoor environment at quarry
-![mini with camera](figures/titan-board-mini-camera.jpg)
+![mini with camera](figures/titan-board-mini-camera.jpeg)
 
 # system architecture
 in order to easily used for development at office, the Titan Board Mini with camera is setup to view at recorded playback video of articulated dump truck (ADT) / lorry at a granite quarry

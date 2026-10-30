@@ -1,0 +1,11 @@
+#Mon Jun 29 17:25:39 CST 2026
+com.renesas.cdt.ddsc.settingseditor/com.renesas.cdt.ddsc.settingseditor.active_page=SWPConfigurator
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.display_on_glcdc.437705048=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.drw.2048477667=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.i2c_on_iic_master.753868606=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.mipi_csi.1402527205=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.uart_on_sci_b_uart.365583330=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.uart_on_sci_b_uart.510206519=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.vin.2115998955=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.google.tflm.core.lib.1648865886=false
+com.renesas.cdt.ddsc.threads.configurator/collapse/module.middleware.rm_ethosu.2061428639=false

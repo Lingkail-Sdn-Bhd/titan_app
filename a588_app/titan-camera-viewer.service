@@ -1,0 +1,13 @@
+[Unit]
+Description=Titan A588 camera viewer
+After=network.target titan-camera-receiver.service
+
+[Service]
+User=ztl
+WorkingDirectory=/home/ztl/Desktop/lorry/viewer
+ExecStart=/usr/bin/python3 -u /home/ztl/Desktop/lorry/viewer/app.py --captures /home/ztl/Desktop/lorry/captures_http --port 8080
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

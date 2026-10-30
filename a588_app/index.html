@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Titan · A588 Camera</title>
+<style>
+:root{font-family:Inter,Segoe UI,Arial,sans-serif;color:#e5edf7;background:#10151e;color-scheme:dark}*{box-sizing:border-box}body{margin:0}main{max-width:1140px;margin:auto;padding:32px 24px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}h1{font-size:26px;letter-spacing:-.6px;margin:6px 0}small,.muted{color:#96a6bc}.tag{font-size:12px;letter-spacing:2px;color:#69cbb8}#status{padding:9px 14px;border:1px solid #344052;border-radius:24px;font-size:13px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px}.panel{background:#19212d;border:1px solid #2c3748;border-radius:14px;overflow:hidden}.panel-title{padding:18px 20px;border-bottom:1px solid #2c3748;display:flex;justify-content:space-between}.stage{aspect-ratio:4/3;background:#080d14;display:grid;place-items:center}.stage img{max-width:100%;max-height:100%;object-fit:contain;width:100%;height:100%}.details{padding:20px;line-height:1.6}h2{font-size:16px;margin:0 0 12px}strong{font-size:30px;font-weight:600}.label{font-size:12px;color:#96a6bc;margin-top:20px}#filename{font-size:12px;overflow-wrap:anywhere}#time{font-size:14px}a{color:#69cbb8}footer{font-size:12px;color:#96a6bc;margin-top:18px}.notice{font-size:14px;color:#b9c5d7}#error{color:#f5b8a6;font-size:14px;margin-top:12px}@media(max-width:760px){.layout{grid-template-columns:1fr}header{align-items:flex-start}main{padding:20px 14px}}
+</style>
+<main>
+<header><div><div class="tag">TITAN / A588</div><h1>Camera monitor</h1><small>Latest picture from Titan Board Mini — <span id="clock"></span></small></div><div id="status" role="status">Connecting…</div></header>
+<div class="layout">
+<section class="panel"><div class="panel-title"><span>Latest capture</span><small>Auto refresh · 3 sec</small></div><div class="stage"><img id="frame" alt="Latest Titan camera capture" hidden><span id="empty">Waiting for the first picture…</span></div></section>
+<aside><section class="panel details"><h2>Capture details</h2><div class="label">PICTURES SAVED</div><strong id="count">—</strong><div class="label">CAPTURED AT</div><div id="time">—</div><div class="label">FILE</div><div id="filename">—</div><p><a id="download" hidden download>Download picture</a></p></section><section class="panel details" style="margin-top:20px"><h2>AI payload estimate</h2><strong id="tonnes">—</strong><p id="ai-status" class="notice" role="status">Starting AI...</p><div class="label">STONE COVERAGE / CONFIDENCE</div><div id="coverage">—</div><div class="label">CLASSIFIER</div><div id="classification">—</div><div class="label">AI FRAME / PROCESSED AT</div><div id="ai-frame" style="font-size:12px;overflow-wrap:anywhere">—</div><p><a id="annotated" hidden target="_blank" rel="noopener">Open annotated detection</a></p><small>Experimental estimate using the FYS calibration. Titan camera accuracy is not validated.</small></section></aside>
+</div><div id="error" role="alert"></div><footer>A588 image receiver · Pictures refresh automatically as new frames arrive.</footer>
+</main>
+<script>
+let current=null;
+function tick(){document.querySelector('#clock').textContent=new Date().toLocaleTimeString();}
+tick();setInterval(tick,1000);
+async function refreshAI(){
+try{
+ const response=await fetch('/api/result',{cache:'no-store'});
+ if(!response.ok)throw Error('AI service unavailable');
+ const data=await response.json();
+ const age=data.processed_at ? (Date.now()-Date.parse(data.processed_at))/1000 : 0;
+ document.querySelector('#tonnes').textContent=data.tonnes==null?'—':data.tonnes.toFixed(2)+' t';
+ document.querySelector('#ai-status').textContent=age>45?'AI result is stale':data.status==='detected'?'Stone and truck bed detected':data.status==='no_detection'?'No valid stone + truck bed detection':data.message||'Starting AI...';
+ document.querySelector('#coverage').textContent=data.coverage_percent==null?'—':data.coverage_percent.toFixed(1)+'% / '+(data.confidence*100).toFixed(1)+'%';
+ const c=data.classification;
+ document.querySelector('#classification').textContent=c?(/^\d+$/.test(c.label)?(Number(c.label)/1000).toFixed(2)+' t candidate':c.label)+' / '+(c.confidence*100).toFixed(1)+'%'+(c.tonnes==null?' / below 65% threshold':''):'--';
+ document.querySelector('#ai-frame').textContent=data.source?data.source+' — '+new Date(data.processed_at).toLocaleTimeString()+' — '+data.elapsed_ms+' ms':'—';
+ const link=document.querySelector('#annotated');link.hidden=!data.image;if(data.image)link.href=data.image;
+ if(data.source===currentSource && data.image && document.querySelector('#frame').dataset.detection!==data.image){document.querySelector('#frame').src=data.image;document.querySelector('#frame').dataset.detection=data.image;}
+}catch(error){document.querySelector('#ai-status').textContent=error.message;}
+finally{setTimeout(refreshAI,3000);}
+}
+let currentSource=null;
+refreshAI();
+async function refresh(){
+try{
+ const response=await fetch('/api/latest',{cache:'no-store'});
+ if(!response.ok)throw Error('Could not read camera status');
+ const data=await response.json();
+ document.querySelector('#error').textContent='';
+ if(!data.image){document.querySelector('#status').textContent='Waiting for camera';return;}
+ if(current!==data.image){
+  const img=document.querySelector('#frame');
+  img.onload=()=>{img.hidden=false;document.querySelector('#empty').hidden=true;};
+  img.onerror=()=>{document.querySelector('#error').textContent='Picture could not load. Retrying…';current=null;};
+  img.src=data.image;current=data.image;currentSource=data.name;img.dataset.detection="";
+ }
+ document.querySelector('#count').textContent=data.count.toLocaleString();
+ document.querySelector('#time').textContent=new Date(data.captured_at).toLocaleString();
+ document.querySelector('#filename').textContent=data.name;
+ const link=document.querySelector('#download');link.href=data.image;link.hidden=false;
+ const age=Math.max(0,Math.floor(Date.now()/1000-data.timestamp));
+ document.querySelector('#status').textContent=age<40?'Receiving pictures':`Last picture ${age}s ago`;
+}catch(error){document.querySelector('#status').textContent='Connection unavailable';document.querySelector('#error').textContent=error.message;}
+finally{setTimeout(refresh,3000);}
+}
+refresh();
+</script>
+</html>

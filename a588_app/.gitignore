@@ -1,0 +1,6 @@
+.venv/
+models/
+detections/
+__pycache__/
+*.log
+.ultralytics/

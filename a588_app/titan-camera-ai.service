@@ -1,0 +1,15 @@
+[Unit]
+Description=Titan A588 local AI tonnage inference
+After=network.target titan-camera-receiver.service
+
+[Service]
+User=ztl
+WorkingDirectory=/home/ztl/Desktop/lorry/viewer
+Environment=YOLO_CONFIG_DIR=/home/ztl/Desktop/lorry/viewer/.ultralytics
+Environment=OMP_NUM_THREADS=4
+ExecStart=/home/ztl/Desktop/lorry/viewer/.venv/bin/python -u /home/ztl/Desktop/lorry/viewer/ai_worker.py --captures /home/ztl/Desktop/lorry/captures_http --models /home/ztl/Desktop/lorry/viewer/models --output /home/ztl/Desktop/lorry/viewer/detections
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

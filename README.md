@@ -1,6 +1,13 @@
 ﻿# titan_app
 a collection of titan board and titan board mini projects
 
+## A588 camera viewer and AI tonnage
+
+The Ubuntu A588 app receives Titan camera frames, displays the latest picture,
+and runs the FYS models locally to show annotated detections and estimated
+payload tonnage. See [A588 usage and deployment](a588_app/README.md) for setup,
+model requirements, service management, and troubleshooting.
+
 # Projects TOC
  Project name  | details |
 | ------------- | ------------- |

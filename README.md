@@ -116,9 +116,11 @@ Standard rectangular bounding boxes include empty corner pixels. Therefore, **In
 ### Classes Defined
 *   **`stone_load` (Class 0):** All visible granite aggregate material inside the truck bed.
 *   **`truck_bed` (Class 1):** The entire visible interior floor space of the lorry (loaded + empty parts).
-Class 0             |  Class 1
+
+No truck detected             |  Payload estimation
 :-------------------------:|:-------------------------:
-![class 0](figures/stone_load.png)  |  ![class 1](figures/truck_bed.png)
+![class 0](figures/stone_load.png) |  ![class 1](figures/truck_bed.png)
+
 
 *Figure 4* Annotation
 

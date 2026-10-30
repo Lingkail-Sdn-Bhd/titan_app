@@ -77,7 +77,7 @@ flowchart LR
         Ubuntu_Host ==>|"Images / Results"| Web_Layer
     end
 
-    ASUS_Server ==>|"Optical Capture<br/>(camera points at screen)"| Titan_Board
+    ASUS_Server ==>|"Video Capture<br/>(camera points at screen)"| Titan_Board
     Titan_Board ==>|"TCP/IP over Ethernet<br/>(HTTP POST /upload)"| Right_Column
 
     %% Apply Styles

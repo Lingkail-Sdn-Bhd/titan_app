@@ -17,8 +17,10 @@ gateway, where the logic and AI to determine the payload is carried out.
 ![software ai tonnage](figures/fys_quarry_app_rtt_contest.jpg)
 *Figure 1* The lorry haulage web app at quarry. This project with Titan Board Mini focus on "Estimate Tonnage". Enlarge view of the ADT with camera is at top right of this image
 
-![no stone](figures/fys_no_valid.png)
-![payload estimate](figures/stone detected.png)
+No truck detected             |  Payload estimation
+:-------------------------:|:-------------------------:
+![no stone](figures/fys_no_valid.png)  |  ![payload estimate](figures/stone_detected.png)
+
 
 [Video of the system working](https://www.youtube.com/watch?v=l13ZbLLVUZg)
 

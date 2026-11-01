@@ -133,7 +133,7 @@ class 0            | class 1
 ### Annotation Methodology
 *   **Workspace:** Processed entirely within the **Roboflow** platform.
 *   **Tracing:** Tight manual placement of multiple nodes along uneven rock edges.
-*   **YOLOv8 Export:** Saves image files matching exactly with normalized 2D coordinate text labels (File Synchronicity).
+*   **yolo11n-seg Export:** Saves image files matching exactly with normalized 2D coordinate text labels (File Synchronicity).
 
 ### Current Dataset Breakdown
 
@@ -146,6 +146,8 @@ class 0            | class 1
 
 *Note: The currently deployed model uses a consolidated sub-dataset of 875 images (after excluding 4 invalid annotations).*
 
+![dataset](figures/dataset.png)
+Figure Some of the image dataset used for AI model training
 ---
 
 ## AI Segmentation Training Pipeline

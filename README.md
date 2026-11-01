@@ -8,6 +8,7 @@ a collection of titan board and titan board mini projects
 | Titan_Board_Mini_Lorry_Capture | Titan Mini: capture + upload, runs standalone (no terminal), LED toggles on each upload, send to edge gateway for AI payload |
 |titan_mini_npu_ai_face_detection  | from titan mini built in example (used as reference) |
 | Titan_Board_Lorry_Capture | Titan Board: auto-captures a frame every 10s and uploads to a PC over Ethernet HTTP (used for debugging) |
+| a588_app               | this can only be viewed under the codex/a588-ai-tonnage-viewer branch  this is the web app on A588|
 
 # Solution Overview
 In granite quarry, it is important to have digitalization of the production process, where the quarry real-time production process can be monitored. One of the major measurement is the payload of an articulated
